@@ -14,3 +14,15 @@ header > p {
   font-weight: 200;
   max-width: 400px;
 }
+.status {
+  /* max-width: 400px; */
+  background-color: green;
+  color: white;
+  margin-top: 10px;
+}
+.status p {
+  text-align: center;
+}
+.status p h2 {
+  text-align: center;
+}
