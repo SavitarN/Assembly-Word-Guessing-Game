@@ -1,0 +1,16 @@
+header {
+  text-align: center;
+}
+header > h2 {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  text-align: center;
+  font-style: normal;
+  margin: 10px;
+}
+header > p {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  max-width: 400px;
+}
