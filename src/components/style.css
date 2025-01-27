@@ -26,3 +26,15 @@ header > p {
 .status p h2 {
   text-align: center;
 }
+main {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* main section css */
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
