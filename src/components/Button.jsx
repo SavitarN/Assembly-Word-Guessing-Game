@@ -3,7 +3,7 @@ import "./style.css";
 const Button = (props) => {
   return (
     <>
-      <button>{props.char}</button>
+      <button onClick={props.onchange}>{props.char}</button>
     </>
   );
 };

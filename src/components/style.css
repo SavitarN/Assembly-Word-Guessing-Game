@@ -70,4 +70,12 @@ header > p {
   border: 2px solid;
   border-radius: 5px;
   background-color: #fcba29;
+  cursor: pointer;
+}
+.btns {
+  height: 40px;
+  width: 100px;
+  background-color: #11b5e5;
+  border: none;
+  border-radius: 10px;
 }

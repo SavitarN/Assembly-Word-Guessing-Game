@@ -5,14 +5,27 @@ import "./style.css";
 
 const Main = () => {
   const [currentWord, setCurrentWord] = React.useState("react");
+
+  const [guessedLetters, setGuessedLetters] = React.useState([]);
+  console.log(guessedLetters);
+
+  //function for updating the GuessedLetters//
+  function change(letters) {
+    setGuessedLetters((prevLetters) => [...prevLetters, letters]);
+  }
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const alphabetButton = alphabet
     .split("")
-    .map((char) => <Button char={char.toUpperCase()} />);
+    .map((char) => (
+      <Button char={char.toUpperCase()} onchange={() => change(char)} />
+    ));
 
+  // fill in the blanks and put word inside it//
   const wordElem = currentWord
     .split("")
-    .map((elem) => <span>{elem.toUpperCase()}</span>);
+    .map((elem, index) => <span key={index}>{elem.toUpperCase()}</span>);
+
   const chipsElem = languages.map((elem) => {
     return (
       <span
@@ -35,6 +48,8 @@ const Main = () => {
       <div className="words">{wordElem}</div>
 
       <div className="alphabets">{alphabetButton}</div>
+
+      <button className="btns">New Game</button>
     </div>
   );
 };
