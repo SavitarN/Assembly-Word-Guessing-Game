@@ -39,9 +39,13 @@ const Main = () => {
   });
 
   // fill in the blanks and put word inside it//
-  const wordElem = currentWord
-    .split("")
-    .map((elem, index) => <span key={index}>{elem.toUpperCase()}</span>);
+  const wordElem = currentWord.split("").map((elem, index) => {
+    return (
+      <span key={index}>
+        {guessedLetters.includes(elem) ? elem.toUpperCase() : ""}
+      </span>
+    );
+  });
 
   const chipsElem = languages.map((elem) => {
     return (
