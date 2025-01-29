@@ -79,3 +79,11 @@ header > p {
   border: none;
   border-radius: 10px;
 }
+
+button.correct {
+  background-color: #10a95b;
+}
+
+button.wrong {
+  background-color: #ec5d49;
+}

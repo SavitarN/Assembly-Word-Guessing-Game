@@ -2,24 +2,41 @@ import React from "react";
 import languages from "../languages";
 import Button from "./Button";
 import "./style.css";
-
+import clsx from "clsx";
 const Main = () => {
   const [currentWord, setCurrentWord] = React.useState("react");
 
   const [guessedLetters, setGuessedLetters] = React.useState([]);
-  console.log(guessedLetters);
 
   //function for updating the GuessedLetters//
   function change(letters) {
-    setGuessedLetters((prevLetters) => [...prevLetters, letters]);
+    setGuessedLetters((prevLetters) =>
+      prevLetters.includes(letters) ? prevLetters : [...prevLetters, letters]
+    );
   }
 
+  //for color change check if the guessed  letter is there on currentWord //
+  const selectedColor = guessedLetters.includes(currentWord);
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  const alphabetButton = alphabet
-    .split("")
-    .map((char) => (
-      <Button char={char.toUpperCase()} onchange={() => change(char)} />
-    ));
+
+  const alphabetButton = alphabet.split("").map((char) => {
+    const isGuessed = guessedLetters.includes(char);
+    const isCorrect = isGuessed && currentWord.includes(char);
+    const isWrong = isGuessed && !currentWord.includes(char);
+
+    const className = clsx({
+      correct: isCorrect,
+      wrong: isWrong,
+    });
+    console.log(className);
+    return (
+      <Button
+        char={char.toUpperCase()}
+        onchange={() => change(char)}
+        className={className}
+      />
+    );
+  });
 
   // fill in the blanks and put word inside it//
   const wordElem = currentWord
