@@ -12,6 +12,7 @@ const Main = () => {
   const wrongGuessCount = guessedLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
+
   console.log(wrongGuessCount);
   //function for updating the GuessedLetters//
   function change(letters) {
@@ -52,15 +53,16 @@ const Main = () => {
     );
   });
 
-  const chipsElem = languages.map((elem) => {
+  const chipsElem = languages.map((elem, index) => {
+    const isLanguageLost = index < wrongGuessCount;
     return (
       <span
         style={{
           backgroundColor: elem.backgroundColor,
           color: elem.color,
-          borderRadius: "5px",
-          padding: "5px",
         }}
+        key={index}
+        className={`chip ${isLanguageLost ? "lost" : ""}`}
       >
         {elem.name}
       </span>
