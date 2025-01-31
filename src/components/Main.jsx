@@ -3,6 +3,7 @@ import languages from "../languages";
 import Button from "./Button";
 import "./style.css";
 import clsx from "clsx";
+import Header from "./Header";
 const Main = () => {
   //state values
   const [currentWord, setCurrentWord] = React.useState("react");
@@ -16,7 +17,6 @@ const Main = () => {
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
-  console.log(isGameWon);
 
   const isGameLost = wrongGuessCount >= languages.length - 1;
 
@@ -27,6 +27,12 @@ const Main = () => {
       prevLetters.includes(letters) ? prevLetters : [...prevLetters, letters]
     );
   }
+
+  //for gamewon or loss status//
+  const statusClass = clsx("status", {
+    won: isGameWon,
+    lost: isGameLost,
+  });
 
   //for color change check if the guessed  letter is there on currentWord //
   const selectedColor = guessedLetters.includes(currentWord);
@@ -78,13 +84,18 @@ const Main = () => {
 
   return (
     <div className="main">
+      <Header
+        class={statusClass}
+        isGameOver={isGameOver}
+        isGameWon={isGameWon}
+      />
       <div className="container">{chipsElem}</div>
 
       <div className="words">{wordElem}</div>
 
       <div className="alphabets">{alphabetButton}</div>
 
-      <button className="btns">{isGameOver ? "New Game" : "Playing"}</button>
+      {isGameOver && <button className="btns">New Game</button>}
     </div>
   );
 };
