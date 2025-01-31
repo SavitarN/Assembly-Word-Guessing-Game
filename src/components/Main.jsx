@@ -13,7 +13,14 @@ const Main = () => {
     (letter) => !currentWord.includes(letter)
   ).length;
 
-  console.log(wrongGuessCount);
+  const isGameWon = currentWord
+    .split("")
+    .every((letter) => guessedLetters.includes(letter));
+  console.log(isGameWon);
+
+  const isGameLost = wrongGuessCount >= languages.length - 1;
+
+  const isGameOver = isGameWon || isGameLost;
   //function for updating the GuessedLetters//
   function change(letters) {
     setGuessedLetters((prevLetters) =>
@@ -77,7 +84,7 @@ const Main = () => {
 
       <div className="alphabets">{alphabetButton}</div>
 
-      <button className="btns">New Game</button>
+      <button className="btns">{isGameOver ? "New Game" : "Playing"}</button>
     </div>
   );
 };
