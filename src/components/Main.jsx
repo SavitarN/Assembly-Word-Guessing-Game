@@ -4,10 +4,15 @@ import Button from "./Button";
 import "./style.css";
 import clsx from "clsx";
 const Main = () => {
+  //state values
   const [currentWord, setCurrentWord] = React.useState("react");
-
   const [guessedLetters, setGuessedLetters] = React.useState([]);
 
+  //Derived values//
+  const wrongGuessCount = guessedLetters.filter(
+    (letter) => !currentWord.includes(letter)
+  ).length;
+  console.log(wrongGuessCount);
   //function for updating the GuessedLetters//
   function change(letters) {
     setGuessedLetters((prevLetters) =>
@@ -28,7 +33,7 @@ const Main = () => {
       correct: isCorrect,
       wrong: isWrong,
     });
-    console.log(className);
+
     return (
       <Button
         char={char.toUpperCase()}
