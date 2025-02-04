@@ -1,7 +1,28 @@
 import React from "react";
 import "./style.css";
 const Header = (props) => {
-  console.log(props.languageLost);
+  function renderGameStatus() {
+    if (!props.isGameOver) {
+      return null;
+    }
+
+    if (props.isGameWon) {
+      return (
+        <>
+          <h2>You Win !</h2>
+          <p>Well Done🎉</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <h2>Game Over</h2>
+          <p>Now you have to live with assembly language</p>
+        </>
+      );
+    }
+  }
+
   return (
     <header>
       <h2>Assembly:Endgame</h2>
@@ -9,23 +30,7 @@ const Header = (props) => {
         Guess the word in under 8 attempts to keep the programming world safe
         from Assembly!
       </p>
-      <div className={props.class}>
-        {props.isGameOver ? (
-          props.isGameWon ? (
-            <>
-              <h2>You Win !</h2>
-              <p>Well Done🎉</p>
-            </>
-          ) : (
-            <>
-              <h2>Game Over</h2>
-              <p>Now you have to live with assembly language</p>
-            </>
-          )
-        ) : props.isLastGuessIncorrect ? (
-          <p className="farewell-message">Bye !</p>
-        ) : null}
-      </div>
+      <div className={props.class}>{renderGameStatus()}</div>
     </header>
   );
 };
