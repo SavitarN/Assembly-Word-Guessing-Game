@@ -4,10 +4,12 @@ import Button from "./Button";
 import "./style.css";
 import clsx from "clsx";
 import Header from "./Header";
+import { getFarewellText } from "./utils";
 const Main = () => {
   //state values
   const [currentWord, setCurrentWord] = React.useState("react");
   const [guessedLetters, setGuessedLetters] = React.useState([]);
+  const [isLanguageLost, setIsLanguageLost] = React.useState(false);
 
   //Derived values//
   const wrongGuessCount = guessedLetters.filter(
@@ -21,6 +23,11 @@ const Main = () => {
   const isGameLost = wrongGuessCount >= languages.length - 1;
 
   const isGameOver = isGameWon || isGameLost;
+
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessIncorrect =
+    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
+
   //function for updating the GuessedLetters//
   function change(letters) {
     setGuessedLetters((prevLetters) =>
@@ -68,6 +75,7 @@ const Main = () => {
 
   const chipsElem = languages.map((elem, index) => {
     const isLanguageLost = index < wrongGuessCount;
+
     return (
       <span
         style={{
@@ -88,6 +96,8 @@ const Main = () => {
         class={statusClass}
         isGameOver={isGameOver}
         isGameWon={isGameWon}
+        isLastGuessIncorrect={isLanguageLost}
+        isGameLost={isGameLost}
       />
       <div className="container">{chipsElem}</div>
 

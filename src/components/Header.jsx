@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 const Header = (props) => {
-  console.log(props.isGameOver);
+  console.log(props.languageLost);
   return (
     <header>
       <h2>Assembly:Endgame</h2>
@@ -22,6 +22,8 @@ const Header = (props) => {
               <p>Now you have to live with assembly language</p>
             </>
           )
+        ) : props.isLastGuessIncorrect ? (
+          <p className="farewell-message">Bye !</p>
         ) : null}
       </div>
     </header>
