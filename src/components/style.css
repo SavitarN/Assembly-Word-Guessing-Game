@@ -115,10 +115,9 @@ span.chip.lost::before {
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
 }
-
-section.game-status > p.farewell-message {
+.farewell {
+  min-height: 60px;
+  border-radius: 4px;
+  margin-block: 30px;
   background-color: #7a5ea7;
-  border: 1px dashed #323232;
-  font-style: italic;
-  font-weight: 400;
 }

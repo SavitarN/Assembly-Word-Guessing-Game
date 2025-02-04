@@ -9,7 +9,6 @@ const Main = () => {
   //state values
   const [currentWord, setCurrentWord] = React.useState("react");
   const [guessedLetters, setGuessedLetters] = React.useState([]);
-  const [isLanguageLost, setIsLanguageLost] = React.useState(false);
 
   //Derived values//
   const wrongGuessCount = guessedLetters.filter(
@@ -39,6 +38,7 @@ const Main = () => {
   const statusClass = clsx("status", {
     won: isGameWon,
     lost: isGameLost,
+    farewell: !isGameOver && isLastGuessIncorrect,
   });
 
   //for color change check if the guessed  letter is there on currentWord //
@@ -96,7 +96,7 @@ const Main = () => {
         class={statusClass}
         isGameOver={isGameOver}
         isGameWon={isGameWon}
-        isLastGuessIncorrect={isLanguageLost}
+        isLastGuessIncorrect={isLastGuessIncorrect}
         isGameLost={isGameLost}
       />
       <div className="container">{chipsElem}</div>

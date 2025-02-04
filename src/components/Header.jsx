@@ -2,8 +2,8 @@ import React from "react";
 import "./style.css";
 const Header = (props) => {
   function renderGameStatus() {
-    if (!props.isGameOver) {
-      return null;
+    if (!props.isGameOver && props.isLastGuessIncorrect) {
+      return <p className={props.class}>Bye</p>;
     }
 
     if (props.isGameWon) {
@@ -13,7 +13,8 @@ const Header = (props) => {
           <p>Well Done🎉</p>
         </>
       );
-    } else {
+    }
+    if (props.isGameLost) {
       return (
         <>
           <h2>Game Over</h2>
@@ -21,6 +22,7 @@ const Header = (props) => {
         </>
       );
     }
+    return null;
   }
 
   return (
