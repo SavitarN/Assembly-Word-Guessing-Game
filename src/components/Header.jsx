@@ -3,7 +3,7 @@ import "./style.css";
 const Header = (props) => {
   function renderGameStatus() {
     if (!props.isGameOver && props.isLastGuessIncorrect) {
-      return <p className={props.class}>Bye</p>;
+      return <p className={props.class}>{props.getFarewellText}</p>;
     }
 
     if (props.isGameWon) {
@@ -32,7 +32,9 @@ const Header = (props) => {
         Guess the word in under 8 attempts to keep the programming world safe
         from Assembly!
       </p>
-      <div className={props.class}>{renderGameStatus()}</div>
+      <div aria-live="polite" role="status" className={props.class}>
+        {renderGameStatus()}
+      </div>
     </header>
   );
 };

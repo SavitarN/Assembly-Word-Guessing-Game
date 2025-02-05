@@ -60,6 +60,7 @@ const Main = () => {
         char={char.toUpperCase()}
         onchange={() => change(char)}
         className={className}
+        disabled={isGameWon}
       />
     );
   });
@@ -89,7 +90,10 @@ const Main = () => {
       </span>
     );
   });
-
+  const farewellText =
+    wrongGuessCount > 0 && wrongGuessCount <= languages.length
+      ? getFarewellText(languages[wrongGuessCount - 1].name)
+      : "";
   return (
     <div className="main">
       <Header
@@ -98,6 +102,9 @@ const Main = () => {
         isGameWon={isGameWon}
         isLastGuessIncorrect={isLastGuessIncorrect}
         isGameLost={isGameLost}
+        wrongGuessCount={wrongGuessCount}
+        getFarewellText={farewellText}
+        languages={languages}
       />
       <div className="container">{chipsElem}</div>
 
