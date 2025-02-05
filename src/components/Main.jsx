@@ -5,9 +5,10 @@ import "./style.css";
 import clsx from "clsx";
 import Header from "./Header";
 import { getFarewellText } from "./utils";
+import { randomWords } from "./utils";
 const Main = () => {
   //state values
-  const [currentWord, setCurrentWord] = React.useState("react");
+  const [currentWord, setCurrentWord] = React.useState(() => randomWords());
   const [guessedLetters, setGuessedLetters] = React.useState([]);
 
   //Derived values//
@@ -94,6 +95,7 @@ const Main = () => {
     wrongGuessCount > 0 && wrongGuessCount <= languages.length
       ? getFarewellText(languages[wrongGuessCount - 1].name)
       : "";
+
   return (
     <div className="main">
       <Header
