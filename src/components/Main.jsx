@@ -68,11 +68,22 @@ const Main = () => {
 
   // fill in the blanks and put word inside it//
   const wordElem = currentWord.split("").map((elem, index) => {
-    return (
-      <span key={index}>
-        {guessedLetters.includes(elem) ? elem.toUpperCase() : ""}
-      </span>
+    const letterClassName = clsx(
+      isGameLost && !guessedLetters.includes(elem) && "missed-letter"
     );
+    if (isGameLost) {
+      return (
+        <span className={letterClassName} key={index}>
+          {elem}
+        </span>
+      );
+    } else {
+      return (
+        <span key={index}>
+          {guessedLetters.includes(elem) ? elem.toUpperCase() : ""}
+        </span>
+      );
+    }
   });
 
   const chipsElem = languages.map((elem, index) => {
@@ -96,6 +107,12 @@ const Main = () => {
       ? getFarewellText(languages[wrongGuessCount - 1].name)
       : "";
 
+  //reset the game//
+  function reset() {
+    setGuessedLetters((prevLetters) => []);
+    setCurrentWord(randomWords());
+  }
+  console.log(guessedLetters);
   return (
     <div className="main">
       <Header
@@ -114,7 +131,11 @@ const Main = () => {
 
       <div className="alphabets">{alphabetButton}</div>
 
-      {isGameOver && <button className="btns">New Game</button>}
+      {isGameOver && (
+        <button className="btns" onClick={reset}>
+          New Game
+        </button>
+      )}
     </div>
   );
 };

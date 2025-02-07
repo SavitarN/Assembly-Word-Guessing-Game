@@ -121,3 +121,6 @@ span.chip.lost::before {
   margin-block: 30px;
   background-color: #7a5ea7;
 }
+.missed-letter {
+  color: #ec5d49;
+}
