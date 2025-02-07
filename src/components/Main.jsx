@@ -6,6 +6,7 @@ import clsx from "clsx";
 import Header from "./Header";
 import { getFarewellText } from "./utils";
 import { randomWords } from "./utils";
+import Confetti from "react-confetti";
 const Main = () => {
   //state values
   const [currentWord, setCurrentWord] = React.useState(() => randomWords());
@@ -112,9 +113,10 @@ const Main = () => {
     setGuessedLetters((prevLetters) => []);
     setCurrentWord(randomWords());
   }
-  console.log(guessedLetters);
+
   return (
     <div className="main">
+      {isGameWon ? <Confetti></Confetti> : ""}
       <Header
         class={statusClass}
         isGameOver={isGameOver}
